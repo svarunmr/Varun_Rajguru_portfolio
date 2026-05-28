@@ -113,7 +113,7 @@ export default function Skills() {
                 "YOLOv8",
                 "CNNs",
                 "OpenCV",
-                "Gradio",
+                "Deep Learning",
               ].map((skill) => (
                 <span
                   key={skill}
@@ -180,6 +180,8 @@ export default function Skills() {
                 "MySQL",
                 "Linux",
                 "Microsoft 365",
+                "Visual Studio Code",
+                "Postman",
               ].map((tool) => (
                 <span
                   key={tool}
@@ -207,11 +209,12 @@ export default function Skills() {
               Problem Solving
             </h3>
             <p className="text-sm text-[var(--text)]/80 leading-relaxed">
-              Solved <strong>1100+</strong> DSA problems across{" "}
-              <strong>LeetCode</strong> and{" "}
-              <strong>GeeksforGeeks</strong>, covering arrays, trees,
-              graphs, dynamic programming, and system-level thinking.
-            </p>
+  Solved <strong>1600+</strong> algorithmic and data structures
+  problems across <strong>LeetCode</strong> and{" "}
+  <strong>GeeksforGeeks</strong>, demonstrating strong expertise in
+  dynamic programming, graphs, trees, optimization techniques, and
+  scalable problem-solving methodologies.
+</p>
           </motion.div>
         </div>
       </div>

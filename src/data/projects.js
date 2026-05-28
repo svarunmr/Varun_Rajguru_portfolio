@@ -156,11 +156,11 @@ export const projects = [
   },
 
   {
-    title: "AutoFinanceAI – Enterprise-Grade AI Finance Platform",
+    title: "SmartLedgerAI – Enterprise-Grade AI Finance Platform",
     shortDescription:
       "Production-level AI-powered financial management and analytics platform.",
     description:
-      "AutoFinanceAI is a scalable React-based financial platform enabling expense tracking, analytics, and AI-powered insights with enterprise-ready architecture.",
+      "SmartLedgerAI is a scalable React-based financial platform enabling expense tracking, analytics, and AI-powered insights with enterprise-ready architecture.",
     problem:
       "Modern finance platforms require scalability, intelligence, and secure architecture.",
     approach: [
