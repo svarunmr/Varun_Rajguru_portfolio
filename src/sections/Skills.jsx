@@ -1,223 +1,109 @@
-import { motion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "framer-motion";
+import Container from "../components/ui/Container";
+import SectionHeading from "../components/ui/SectionHeading";
+import { skillGroups } from "../content/skills";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.06, duration: 0.45 },
-  }),
-};
+function SkillGroup({ group, className = "" }) {
+  return (
+    <article className={["technical-stack__group", className].filter(Boolean).join(" ")}>
+      <header className="technical-stack__group-header">
+        <span className="technical-stack__number">{group.number}</span>
+        <h3>{group.label}</h3>
+      </header>
+      <p className="technical-stack__items">{group.items.join(" · ")}</p>
+    </article>
+  );
+}
+
+function AiGroup({ group }) {
+  return (
+    <article className="technical-stack__ai">
+      <header className="technical-stack__ai-header">
+        <span className="technical-stack__number">{group.number}</span>
+        <h3>{group.label}</h3>
+      </header>
+
+      <div className="technical-stack__ai-groups">
+        {group.subgroups.map((subgroup) => (
+          <section className="technical-stack__ai-subgroup" key={subgroup.label}>
+            <h4>{subgroup.label}</h4>
+            <p>{subgroup.items.join(" · ")}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  );
+}
 
 export default function Skills() {
+  const shouldReduceMotion = useReducedMotion();
+  const groupsBeforeAi = skillGroups.filter((group) => group.id !== "ai-ml");
+  const aiGroup = skillGroups.find((group) => group.id === "ai-ml");
+  const upperGroups = groupsBeforeAi.slice(0, 3);
+  const lowerGroups = groupsBeforeAi.slice(3);
+
   return (
     <section
       id="skills"
-      className="min-h-screen px-6 py-24 bg-[var(--bg)] text-[var(--text)]"
+      aria-labelledby="skills-title"
+      className="technical-stack section"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 16 }}
+      <Container>
+        <Motion.div
+          className="technical-stack__intro"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Technical Skills
-          </h2>
+          <SectionHeading
+            id="skills-title"
+            eyebrow="Engineering Toolkit / 04"
+            title="Technical Stack"
+            description="Technologies and foundations I use to design, build, and experiment."
+          />
+        </Motion.div>
 
-          <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm md:text-base">
-            Technologies and fundamentals I actively use to design,
-            build, and optimize software systems.
-          </p>
-        </motion.div>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Languages */}
-          <motion.div
-            custom={0}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
+        <div className="technical-stack__content">
+          <Motion.div
+            className="technical-stack__foundation"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.08 }}
           >
-            <h3 className="text-lg font-medium mb-4">Languages</h3>
-            <div className="flex flex-wrap gap-2">
-              {["C++", "Python", "JavaScript", "SQL"].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 text-sm rounded-full
-                             border border-[var(--text)]/40
-                             text-[var(--text)]/80"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+            {upperGroups.map((group) => (
+              <SkillGroup group={group} key={group.id} />
+            ))}
+          </Motion.div>
 
-          {/* Backend & Databases */}
-          <motion.div
-            custom={1}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
-          >
-            <h3 className="text-lg font-medium mb-4">
-              Backend & Databases
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Node.js",
-                "Express",
-                "REST APIs",
-                "MySQL",
-                "MongoDB",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 text-sm rounded-full
-                             border border-[var(--text)]/40
-                             text-[var(--text)]/80"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          {aiGroup && (
+            <Motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : 0.14,
+              }}
+            >
+              <AiGroup group={aiGroup} />
+            </Motion.div>
+          )}
 
-          {/* AI / ML */}
-          <motion.div
-            custom={2}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
+          <Motion.div
+            className="technical-stack__foundation technical-stack__foundation--lower"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.2 }}
           >
-            <h3 className="text-lg font-medium mb-4">
-              AI / Machine Learning
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Machine Learning",
-                "YOLOv8",
-                "CNNs",
-                "OpenCV",
-                "Deep Learning",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 text-sm rounded-full
-                             border border-[var(--text)]/40
-                             text-[var(--text)]/80"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* CS Fundamentals */}
-          <motion.div
-            custom={3}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
-          >
-            <h3 className="text-lg font-medium mb-4">
-              CS Fundamentals
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Data Structures & Algorithms",
-                "DBMS",
-                "OOP",
-                "Operating Systems",
-                "Computer Networks",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 text-sm rounded-full
-                             border border-[var(--text)]/40
-                             text-[var(--text)]/80"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Tools */}
-          <motion.div
-            custom={4}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
-          >
-            <h3 className="text-lg font-medium mb-4">
-              Tools & Platforms
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Git",
-                "GitHub",
-                "MySQL",
-                "Linux",
-                "Microsoft 365",
-                "Visual Studio Code",
-                "Postman",
-              ].map((tool) => (
-                <span
-                  key={tool}
-                  className="px-3 py-1 text-sm rounded-full
-                             border border-[var(--text)]/40
-                             text-[var(--text)]/80"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Problem Solving */}
-          <motion.div
-            custom={5}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[var(--text)]/30 p-6
-                       hover:border-[var(--text)]/60 transition-colors"
-          >
-            <h3 className="text-lg font-medium mb-3">
-              Problem Solving
-            </h3>
-            <p className="text-sm text-[var(--text)]/80 leading-relaxed">
-  Solved <strong>1600+</strong> algorithmic and data structures
-  problems across <strong>LeetCode</strong> and{" "}
-  <strong>GeeksforGeeks</strong>, demonstrating strong expertise in
-  dynamic programming, graphs, trees, optimization techniques, and
-  scalable problem-solving methodologies.
-</p>
-          </motion.div>
+            {lowerGroups.map((group) => (
+              <SkillGroup group={group} key={group.id} />
+            ))}
+          </Motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

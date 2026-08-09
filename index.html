@@ -2,17 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/webp" href="/favicoon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
-    <!-- Load Inter font -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
-/>
+    <meta
+      name="description"
+      content="Varun Rajguru portfolio showcasing software engineering, DSA, backend development, AI projects, scalable applications, and full stack development."
+    />
+    <meta
+      name="keywords"
+      content="Varun Rajguru, Varun Rajguru portfolio, software engineer, full stack developer, backend developer, React developer, DSA, AI engineer"
+    />
+    <meta name="author" content="Varun Rajguru" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#111827" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="https://svarunmr.vercel.app/" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="apple-touch-icon" href="/favicon.webp" />
 
+    <meta
+      property="og:title"
+      content="Varun Rajguru | Software Engineer & Full Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Varun Rajguru portfolio showcasing software engineering, DSA, backend development, AI projects, scalable applications, and full stack development."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://svarunmr.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://svarunmr.vercel.app/favicon.webp"
+    />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:site_name" content="Varun Rajguru Portfolio" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Varun Rajguru | Software Engineer & Full Stack Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Varun Rajguru portfolio showcasing software engineering, DSA, backend development, AI projects, scalable applications, and full stack development."
+    />
+    <meta
+      name="twitter:image"
+      content="https://svarunmr.vercel.app/favicon.webp"
+    />
+    <meta name="twitter:creator" content="@svarunmr" />
+
+    <title>Varun Rajguru | Software Engineer & Full Stack Developer</title>
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("theme");
+          const theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://svarunmr.vercel.app/#person",
+            "name": "Varun Rajguru",
+            "url": "https://svarunmr.vercel.app/",
+            "jobTitle": "Software Engineer & Full Stack Developer",
+            "sameAs": [
+              "https://github.com/svarunmr",
+              "https://www.linkedin.com/in/svarunmr/",
+              "https://leetcode.com/u/svarunmr/",
+              "https://www.geeksforgeeks.org/profile/svarunmr",
+              "https://codolio.com/profile/svarunmr"
+            ],
+            "knowsAbout": [
+              "Software Engineering",
+              "Full Stack Development",
+              "Backend Development",
+              "React",
+              "Data Structures and Algorithms",
+              "Artificial Intelligence",
+              "Machine Learning"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://svarunmr.vercel.app/#website",
+            "url": "https://svarunmr.vercel.app/",
+            "name": "Varun Rajguru Portfolio",
+            "description": "Varun Rajguru portfolio showcasing software engineering, DSA, backend development, AI projects, scalable applications, and full stack development.",
+            "publisher": {
+              "@id": "https://svarunmr.vercel.app/#person"
+            },
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

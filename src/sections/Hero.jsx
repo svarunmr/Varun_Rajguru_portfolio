@@ -1,70 +1,84 @@
-import { motion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "framer-motion";
+import EngineeringSignal from "../components/EngineeringSignal";
+import Button from "../components/ui/Button";
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+  const reveal = shouldReduceMotion
+    ? { initial: false, animate: { opacity: 1, y: 0, x: 0 } }
+    : {
+        initial: { opacity: 0, y: 18 },
+        animate: { opacity: 1, y: 0 },
+      };
+
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center px-6 pt-24
-                 bg-[var(--bg)] text-[var(--text)]"
-    >
-      <div className="max-w-3xl text-center">
-        {/* Heading */}
-        <motion.h1
-          className="text-4xl md:text-6xl font-semibold tracking-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+    <section id="home" aria-labelledby="hero-title" className="hero section">
+      <div className="container hero__grid">
+        <Motion.div
+          className="hero__content"
+          initial={reveal.initial}
+          animate={reveal.animate}
+          transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          Hi, I’m Varun
-        </motion.h1>
+          <p className="type-label hero__eyebrow">Software Engineer</p>
 
-        {/* Subheading / description */}
-        <motion.p
-          className="mt-6 text-base md:text-lg text-gray-400 leading-relaxed"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.5 }}
-        >
-          <span className="block font-medium text-[var(--text)]">
-            Backend & AI-focused Software Engineer
-          </span>
+          <h1 id="hero-title" className="type-display hero__title">
+            <span>I BUILD</span>
+            <span>SYSTEMS</span>
+            <span>AND SOLVE</span>
+            <span>HARD PROBLEMS.</span>
+          </h1>
 
-          <span className="block mt-3">
+          <p className="hero__specialties type-mono">
+            Backend <span aria-hidden="true">·</span> Algorithms{" "}
+            <span aria-hidden="true">·</span> AI
+          </p>
+
+          <p className="hero__description type-body-lg">
             I design and build scalable backend systems and ML-powered
-            applications with a strong focus on clean architecture,
-            performance, and real-world impact.
-          </span>
-        </motion.p>
+            applications with a focus on clean architecture, performance, and
+            real-world impact.
+          </p>
 
-        {/* CTA buttons */}
-        <motion.div
-          className="mt-10 flex flex-wrap justify-center gap-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.4 }}
+          <div className="hero__actions">
+            <Button href="#projects" variant="primary">
+              VIEW WORK
+            </Button>
+            <Button
+              href="https://github.com/svarunmr"
+              variant="secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GITHUB
+            </Button>
+          </div>
+
+          <div className="hero__metadata" aria-label="Engineering focus areas">
+            <span>BACKEND</span>
+            <span>ALGORITHMS</span>
+            <span>AI</span>
+          </div>
+        </Motion.div>
+
+        <Motion.div
+          className="hero__signal-wrap"
+          initial={shouldReduceMotion ? false : { opacity: 0, x: 14 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.55, delay: shouldReduceMotion ? 0 : 0.12 }}
         >
-          <a
-            href="#projects"
-            className="px-6 py-3 rounded-xl font-medium
-                       bg-[var(--text)] text-[var(--bg)]
-                       transition-all duration-200
-                       hover:-translate-y-0.5 hover:opacity-90
-                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--text)]"
-          >
-            View Projects
-          </a>
-
-          <a
-            href="#contact"
-            className="px-6 py-3 rounded-xl border border-[var(--text)]/50
-                       transition-all duration-200
-                       hover:bg-[var(--text)]/5 hover:-translate-y-0.5
-                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--text)]"
-          >
-            Contact Me
-          </a>
-        </motion.div>
+          <EngineeringSignal />
+        </Motion.div>
       </div>
+
+      <a
+        className="hero__scroll"
+        href="#problem-solving"
+        aria-label="Scroll to problem solving"
+      >
+        <span>SCROLL TO EXPLORE</span>
+        <span aria-hidden="true">↓</span>
+      </a>
     </section>
   );
 }

@@ -1,23 +1,34 @@
-import { useEffect, useState } from "react";
-import { useTheme } from "../context/ThemeContext";
+import { useEffect, useRef, useState } from "react";
+import { useTheme } from "../context/useTheme";
+import IconButton from "./ui/IconButton";
+import {
+  CloseIcon,
+  GithubIcon,
+  MenuIcon,
+  MoonIcon,
+  SunIcon,
+} from "./ui/icons";
 
 const NAV_ITEMS = [
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
+  { id: "projects", label: "WORK" },
+  { id: "skills", label: "LAB" },
+  { id: "about", label: "ABOUT" },
 ];
+
+const OBSERVED_SECTIONS = ["home", ...NAV_ITEMS.map(({ id }) => id)];
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [active, setActive] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   useEffect(() => {
-    const sections = ["home", "skills", "projects", "contact"];
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
-          .filter((e) => e.isIntersecting)
+          .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible.length > 0) {
@@ -27,92 +38,119 @@ export default function Navbar() {
       { threshold: [0.4, 0.6, 0.8] }
     );
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+    OBSERVED_SECTIONS.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const firstMenuLink = mobileMenuRef.current?.querySelector("a");
+    firstMenuLink?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur
-                 bg-[var(--bg)]/80 border-b border-[var(--text)]/20"
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          href="#home"
-          className="text-sm md:text-base font-semibold tracking-tight
-                     hover:opacity-80 transition-opacity"
-        >
-          Varun Rajguru
+    <nav className="site-nav" aria-label="Primary navigation">
+      <div className="container site-nav__inner">
+        <a className="site-nav__brand" href="#home" aria-label="Go to homepage">
+          VARUN.R
         </a>
 
-        {/* Nav */}
-        <div className="flex items-center gap-6 text-sm">
-          {/* Internal links */}
-          {NAV_ITEMS.map(({ id, label }) => {
-            const isActive = active === id;
+        <div className="site-nav__desktop-links" aria-label="Main sections">
+          {NAV_ITEMS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              aria-current={
+                active !== "home" && active === id ? "location" : undefined
+              }
+              className="site-nav__link"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
 
-            return (
-              <a
-                key={id}
-                href={`#${id}`}
-                aria-current={isActive ? "page" : undefined}
-                className={`relative transition-colors
-                  ${
-                    isActive
-                      ? "text-[var(--text)]"
-                      : "text-gray-400 hover:text-[var(--text)]"
-                  }
-                  focus:outline-none focus-visible:ring-2
-                  focus-visible:ring-[var(--text)]/40
-                  focus-visible:ring-offset-4`}
-              >
-                {label}
+        <div className="site-nav__actions">
+          <a
+            className="site-nav__github"
+            href="https://github.com/svarunmr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Varun Rajguru on GitHub"
+          >
+            <GithubIcon />
+          </a>
 
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 w-full h-px bg-[var(--text)]" />
-                )}
-              </a>
-            );
-          })}
+          <IconButton
+            onClick={toggleTheme}
+            label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-pressed={theme === "dark"}
+            className="site-nav__theme"
+          >
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+          </IconButton>
 
-          {/* External links */}
+          <IconButton
+            ref={menuButtonRef}
+            onClick={() => setMenuOpen((open) => !open)}
+            label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            className="site-nav__menu-button"
+          >
+            <span className="site-nav__menu-icon" aria-hidden="true">
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            </span>
+          </IconButton>
+        </div>
+      </div>
+
+      <div
+        id="mobile-navigation"
+        ref={mobileMenuRef}
+        className={`site-nav__mobile-menu${menuOpen ? " is-open" : ""}`}
+        hidden={!menuOpen}
+      >
+        <div className="container site-nav__mobile-links">
+          {NAV_ITEMS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              aria-current={
+                active !== "home" && active === id ? "location" : undefined
+              }
+              onClick={closeMenu}
+              className="site-nav__mobile-link"
+            >
+              {label}
+            </a>
+          ))}
           <a
             href="https://github.com/svarunmr"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[var(--text)] transition-colors"
+            onClick={closeMenu}
+            className="site-nav__mobile-link"
           >
-            GitHub
+            GITHUB
           </a>
-
-          <a
-            href="https://leetcode.com/u/svarunmr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[var(--text)] transition-colors"
-          >
-            LeetCode
-          </a>
-
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="ml-2 rounded-lg border border-[var(--text)]/30
-                       px-2.5 py-1.5 text-sm
-                       hover:border-[var(--text)]/60
-                       transition-all
-                       focus:outline-none focus-visible:ring-2
-                       focus-visible:ring-[var(--text)]/40
-                       focus-visible:ring-offset-4"
-          >
-            {theme === "dark" ? "☀️" : "🌙"}
-          </button>
         </div>
       </div>
     </nav>

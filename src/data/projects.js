@@ -1,54 +1,86 @@
 export const projects = [
   {
-    title: "Cauli-Det-cauliflower-disease-detection",
+    id: "cauli-det-cauliflower-disease-detection",
+    slug: "cauli-det-cauliflower-disease-detection",
+    title: "Cauli-Det – Cauliflower Disease Detection",
+    category: "Computer Vision",
+    featured: false,
     shortDescription:
-      "Computer vision system for real-time crop disease detection.",
+      "YOLOv8-based computer vision system for detecting and classifying diseases in cauliflower leaf images.",
     description:
-      "Built a YOLOv8-based computer vision system to detect and classify crop diseases from images, enabling early diagnosis and reducing manual inspection effort.",
+      "Cauli-Det is a computer vision pipeline for identifying common cauliflower diseases from leaf images. The system uses YOLOv8 to classify four disease/health categories and provides annotated predictions with confidence scores.",
     problem:
-      "Manual crop disease detection is time-consuming and error-prone, especially for large farms.",
+      "Early identification of crop diseases can help enable faster intervention. Manual inspection of plant leaves is time-consuming and depends on domain expertise. Cauli-Det explores an image-based approach for automatically identifying common cauliflower diseases from leaf images.",
     approach: [
-      "Collected and preprocessed labeled crop images",
-      "Trained a YOLOv8 model for multi-class detection",
-      "Integrated real-time inference using OpenCV",
-      "Built an interactive UI using Gradio",
+      "Built a YOLOv8-based detection pipeline around a cauliflower disease dataset",
+      "Split images into training and validation sets",
+      "Applied random flips, rotations, color adjustments, and resized crops for augmentation",
+      "Trained the model for 200 epochs",
+      "Evaluated using mAP metrics, class-wise performance, classification reports, and a confusion matrix",
     ],
     highlights: [
-      "Real-time inference",
-      "Scalable model pipeline",
-      "Production-oriented design",
+      "Trained a YOLOv8s model across four cauliflower disease classes",
+      "Automated training and validation dataset preparation",
+      "Applied image augmentation to improve training diversity",
+      "Evaluated performance using mAP, precision, recall, accuracy, and confusion matrices",
+      "Built interactive inference interfaces using Gradio and Streamlit",
     ],
-    tech: ["Python", "YOLOv8", "OpenCV", "Gradio"],
-    github: "https://github.com/your-username/vegetable-disease-detection",
+    technologies: [
+      "Python",
+      "YOLOv8",
+      "Ultralytics",
+      "PyTorch",
+      "Gradio",
+      "Streamlit",
+    ],
+    github:
+      "https://github.com/svarunmr/Cauli-Det-cauliflower-disease-detection",
     demo: "",
+    images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
-    title: "Snake Game AI",
+    id: "snake-game-ai",
+    slug: "snake-game-ai",
+    title: "Snake Game AI — Autonomous Pathfinding in C",
+    category: "Algorithms / Systems",
+    featured: false,
     shortDescription:
-      "Autonomous AI agent for the classic Snake game.",
+      "Terminal-based Snake implementation in C with autonomous pathfinding using A*, BFS, custom heuristics, and body-aware traversal.",
     description:
-      "Developed an autonomous Snake Game AI using pathfinding and decision-making algorithms to optimize survival and gameplay efficiency.",
+      "A terminal-based Snake implementation with an autonomous gameplay mode that uses graph-search algorithms to navigate toward food while accounting for obstacles and the snake's changing body state.",
     problem:
-      "Manual control of the Snake game limits optimization and does not demonstrate algorithmic decision-making.",
+      "Finding a path to food is straightforward when the board is static, but Snake introduces a dynamic obstacle: the snake itself. The pathfinder therefore needs to reason about blocked cells, body configuration, board boundaries and optional wraparound movement.",
     approach: [
-      "Modeled the game grid as a state space",
-      "Used pathfinding to reach food safely",
-      "Handled edge cases like self-trapping",
-      "Optimized movement decisions for longevity",
+      "Implemented A* search with configurable heuristics and a BFS alternative. The search maintains per-cell path costs and parent relationships while validating candidate paths against the snake's changing body configuration. Wraparound boards are supported through teleport-aware neighbor and heuristic logic.",
     ],
     highlights: [
-      "Algorithmic decision-making",
-      "Edge case handling",
-      "High survival consistency",
+      "A* pathfinding with configurable heuristic behavior.",
+      "BFS as an alternative shortest-path strategy.",
+      "Body-aware path validation.",
+      "Custom stack, queue, min-heap and linked data structures.",
+      "Configurable board dimensions, obstacles, speed and wraparound mechanics.",
+      "Multiple gameplay modes including autonomous and screensaver modes.",
+      "Makefile-based build/debug workflow.",
     ],
-    tech: ["C", "Algorithms", "Pathfinding"],
-    github: "https://github.com/your-username/snake-ai",
+    technologies: ["C", "A*", "BFS", "Data Structures", "Make"],
+    github: "https://github.com/svarunmr/Snake_Game_AI",
     demo: "",
+    images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "finai-ai-powered-finance-tracker",
+    slug: "finai-ai-powered-finance-tracker",
     title: "FinAI – AI-Powered Finance Tracker",
+    category: "FinTech",
+    featured: false,
     shortDescription:
       "Full-stack personal finance tracker with AI-based financial insights.",
     description:
@@ -62,7 +94,8 @@ export const projects = [
       "Implemented secure authentication with Clerk",
       "Visualized spending patterns using charts",
     ],
-    tech: [
+    highlights: [],
+    technologies: [
       "MongoDB",
       "Express",
       "React",
@@ -70,12 +103,20 @@ export const projects = [
       "Plaid API",
       "GPT-4o",
     ],
-    github: "https://github.com/svarunmr",
+    github: "",
+    demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "wealth-pilot-ai-mutual-fund-assistant",
+    slug: "wealth-pilot-ai-mutual-fund-assistant",
     title: "Wealth Pilot – AI Mutual Fund Assistant",
+    category: "FinTech",
+    featured: false,
     shortDescription:
       "AI-based mutual fund recommendation and analysis system.",
     description:
@@ -88,19 +129,28 @@ export const projects = [
       "Built interactive Streamlit UI",
       "Visualized insights using Plotly",
     ],
-    tech: [
+    highlights: [],
+    technologies: [
       "Python",
       "Machine Learning",
       "Streamlit",
       "Plotly",
       "Yahoo Finance API",
     ],
-    github: "https://github.com/svarunmr",
+    github: "",
+    demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "rythmic-web-based-music-player",
+    slug: "rythmic-web-based-music-player",
     title: "Rythmic – Web-Based Music Player",
+    category: "Web Development",
+    featured: false,
     shortDescription:
       "Full-stack music streaming platform with admin & user modules.",
     description:
@@ -113,19 +163,22 @@ export const projects = [
       "Implemented playlists and listening history",
       "Ensured data consistency across entities",
     ],
-    tech: [
-      "MySQL",
-      "PHP",
-      "JavaScript",
-      "HTML",
-      "CSS",
-    ],
-    github: "https://github.com/svarunmr",
+    highlights: [],
+    technologies: ["MySQL", "PHP", "JavaScript", "HTML", "CSS"],
+    github: "",
+    demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "healthyheart-heart-disease-prediction-system",
+    slug: "healthyheart-heart-disease-prediction-system",
     title: "HealthyHeart – Heart Disease Prediction System",
+    category: "Machine Learning",
+    featured: false,
     shortDescription:
       "Machine learning-based heart disease risk prediction web application.",
     description:
@@ -143,20 +196,27 @@ export const projects = [
       "End-to-end ML pipeline",
       "Interactive UI",
     ],
-    tech: [
+    technologies: [
       "Python",
       "Machine Learning",
       "Streamlit",
       "NumPy",
       "Pickle",
     ],
-    github: "https://github.com/svarunmr",
+    github: "",
     demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "smartledgerai-enterprise-ai-finance-platform",
+    slug: "smartledgerai-enterprise-ai-finance-platform",
     title: "SmartLedgerAI – Enterprise-Grade AI Finance Platform",
+    category: "FinTech",
+    featured: false,
     shortDescription:
       "Production-level AI-powered financial management and analytics platform.",
     description:
@@ -175,20 +235,21 @@ export const projects = [
       "AI-powered insights",
       "Scalable modular design",
     ],
-    tech: [
-      "React",
-      "JavaScript",
-      "Node.js",
-      "MongoDB",
-      "Express",
-    ],
-    github: "https://github.com/svarunmr",
+    technologies: ["React", "JavaScript", "Node.js", "MongoDB", "Express"],
+    github: "",
     demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "smart-inventory-supply-chain-management-system",
+    slug: "smart-inventory-supply-chain-management-system",
     title: "Smart Inventory & Supply Chain Management System",
+    category: "Supply Chain",
+    featured: false,
     shortDescription:
       "Data-driven inventory and supply chain optimization platform.",
     description:
@@ -206,18 +267,25 @@ export const projects = [
       "Supply chain optimization",
       "Scalable system design",
     ],
-    tech: [
+    technologies: [
       "Database Management",
       "Backend Development",
       "Web Technologies",
     ],
-    github: "https://github.com/svarunmr",
+    github: "",
     demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 
   {
+    id: "signasense-ai-powered-sign-language-translator",
+    slug: "signasense-ai-powered-sign-language-translator",
     title: "SignaSense – AI-Powered Sign Language Translator",
+    category: "Accessibility & AI",
+    featured: false,
     shortDescription:
       "Real-time deep learning-based hand sign recognition system.",
     description:
@@ -235,7 +303,7 @@ export const projects = [
       "Hybrid CNN + LSTM architecture",
       "Low-latency inference",
     ],
-    tech: [
+    technologies: [
       "Python",
       "OpenCV",
       "TensorFlow",
@@ -243,8 +311,11 @@ export const projects = [
       "LSTM",
       "Deep Learning",
     ],
-    github: "https://github.com/svarunmr",
+    github: "",
     demo: "",
     images: [],
+    status: "",
+    date: "",
+    metrics: {},
   },
 ];

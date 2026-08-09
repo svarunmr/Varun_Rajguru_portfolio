@@ -1,63 +1,92 @@
-import { motion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "framer-motion";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0 },
-};
+export default function ProjectCard({
+  project,
+  index,
+  featured = false,
+  onClick,
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const motionProps = shouldReduceMotion
+    ? { initial: false, whileInView: { opacity: 1, y: 0 } }
+    : {
+        initial: { opacity: 0, y: 16 },
+        whileInView: { opacity: 1, y: 0 },
+      };
+  const metadata = [project.status, project.date].filter(Boolean);
+  const metrics = Object.entries(project.metrics || {});
+  const availableLinks = [
+    project.github && { href: project.github, label: "VIEW CODE" },
+    project.demo && { href: project.demo, label: "VIEW DEMO" },
+  ].filter(Boolean);
+  const cardClassName = [
+    "project-card",
+    featured ? "project-card--featured" : "project-card--secondary",
+  ].join(" ");
 
-export default function ProjectCard({ project, onClick }) {
   return (
-    <motion.div
-      variants={cardVariants}
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
-      className="group cursor-pointer rounded-2xl
-                 border border-[var(--text)]/25
-                 p-6 transition-all duration-200
-                 hover:-translate-y-1 hover:border-[var(--text)]/50
-                 focus:outline-none
-                 focus-visible:ring-2 focus-visible:ring-[var(--text)]/40
-                 focus-visible:ring-offset-4"
+    <Motion.article
+      className={cardClassName}
+      data-project-slug={project.slug}
+      {...motionProps}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
     >
-      {/* Title */}
-      <h3 className="text-lg md:text-xl font-medium tracking-tight mb-2">
-        {project.title}
-      </h3>
+      <button
+        type="button"
+        className="project-card__trigger"
+        onClick={onClick}
+        aria-label={"View details for " + project.title}
+      >
+        <span className="project-card__index" aria-hidden="true">
+          {String(index).padStart(2, "0")}
+        </span>
 
-      {/* Short description */}
-      <p className="text-sm text-[var(--text)]/70 leading-relaxed mb-4">
-        {project.shortDescription}
-      </p>
-
-      {/* Impact (optional but powerful) */}
-      {project.impact && (
-        <p className="text-xs text-[var(--muted)] mb-4">
-          {project.impact}
-        </p>
-      )}
-
-      {/* Tech stack */}
-      <div className="flex flex-wrap gap-2">
-        {project.tech.map((t) => (
-          <span
-            key={t}
-            className="text-xs px-3 py-1 rounded-full
-                       border border-[var(--text)]/30
-                       text-[var(--text)]/75
-                       transition-colors
-                       group-hover:border-[var(--text)]/50"
-          >
-            {t}
+        <span className="project-card__content">
+          <span className="project-card__category">{project.category}</span>
+          <span className="project-card__title">{project.title}</span>
+          <span className="project-card__description">
+            {project.shortDescription}
           </span>
-        ))}
-      </div>
-    </motion.div>
+
+          <span className="project-card__details">
+            <span className="project-card__technologies">
+              {project.technologies.join(" · ")}
+            </span>
+            {metadata.length > 0 && (
+              <span className="project-card__metadata">
+                {metadata.join(" · ")}
+              </span>
+            )}
+            {metrics.length > 0 && (
+              <span className="project-card__metadata">
+                {metrics
+                  .map(([key, value]) => key + ": " + value)
+                  .join(" · ")}
+              </span>
+            )}
+          </span>
+
+          <span className="project-card__view">
+            VIEW PROJECT <span aria-hidden="true">→</span>
+          </span>
+        </span>
+      </button>
+
+      {availableLinks.length > 0 && (
+        <div className="project-card__links" aria-label="Project links">
+          {availableLinks.map(({ href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {label} <span aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </Motion.article>
   );
 }

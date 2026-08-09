@@ -1,65 +1,110 @@
+import { motion as Motion, useReducedMotion } from "framer-motion";
+import Button from "../components/ui/Button";
+import Container from "../components/ui/Container";
+import SectionHeading from "../components/ui/SectionHeading";
+
+const primaryLinks = [
+  ["GitHub", "https://github.com/svarunmr"],
+  ["LinkedIn", "https://www.linkedin.com/in/svarunmr/"],
+];
+
+const profileLinks = [
+  ["LeetCode", "https://leetcode.com/u/svarunmr/"],
+  ["GeeksforGeeks", "https://www.geeksforgeeks.org/profile/svarunmr"],
+  ["Codolio", "https://codolio.com/profile/svarunmr"],
+];
+
 export default function Contact() {
+  const shouldReduceMotion = useReducedMotion();
+  const reveal = shouldReduceMotion
+    ? { initial: false, whileInView: { opacity: 1, y: 0 } }
+    : {
+        initial: { opacity: 0, y: 18 },
+        whileInView: { opacity: 1, y: 0 },
+      };
+
   return (
     <section
       id="contact"
-      className="min-h-screen px-6 py-24 flex items-center justify-center bg-[var(--bg)] text-[var(--text)]"
+      aria-labelledby="contact-title"
+      className="contact-section section"
     >
-      <div className="max-w-2xl w-full text-center">
-        {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-          Let’s build something meaningful
-        </h2>
-
-        {/* Subtext */}
-        <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-10">
-          I’m open to software engineering roles, internships, and
-          collaborations where I can solve real problems and grow as an
-          engineer.
-        </p>
-
-        {/* Actions */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {/* Primary CTA */}
-          <a
-            href="mailto:varun.rajguru22@vit.edu"
-            className="px-6 py-3 rounded-xl font-medium bg-[var(--text)] text-[var(--bg)]
-                       transition-all duration-200
-                       hover:-translate-y-0.5 hover:opacity-90
-                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--text)]"
+      <Container>
+        <div className="contact-section__layout">
+          <Motion.div
+            className="contact-section__statement"
+            {...reveal}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            Email Me
-          </a>
+            <SectionHeading
+              id="contact-title"
+              eyebrow="Contact / Availability / 06"
+              title="Let's build something meaningful."
+              description="I'm open to software engineering roles, internships, and collaborations where I can solve real problems and grow as an engineer."
+            />
+          </Motion.div>
 
-          {/* Secondary links */}
-          {[
-            ["GitHub", "https://github.com/svarunmr"],
-            ["LinkedIn", "https://www.linkedin.com/in/svarunmr/"],
-            ["LeetCode", "https://leetcode.com/u/svarunmr/"],
-            ["GeeksforGeeks", "https://www.geeksforgeeks.org/profile/svarunmr"],
-            ["Codolio", "https://codolio.com/profile/svarunmr"],
-          ].map(([label, link]) => (
-            <a
-              key={label}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 rounded-xl border border-[var(--text)]/40 text-sm
-                         transition-all duration-200
-                         hover:border-[var(--text)]
-                         hover:bg-[var(--text)]/5
-                         hover:-translate-y-0.5
-                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--text)]"
-            >
-              {label}
-            </a>
-          ))}
+          <Motion.div
+            className="contact-section__panel"
+            {...reveal}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.08 }}
+          >
+            <div className="contact-section__availability">
+              <span className="contact-section__label">AVAILABLE FOR</span>
+              <ul>
+                <li>Software Engineering</li>
+                <li>Backend Engineering</li>
+                <li>Technical Collaboration</li>
+              </ul>
+            </div>
+
+            <div className="contact-section__actions">
+              <span className="contact-section__label">CONTACT</span>
+              <Button
+                href="mailto:varun.rajguru22@vit.edu"
+                variant="primary"
+                aria-label="Email Varun Rajguru"
+                className="contact-section__email"
+              >
+                EMAIL ME <span aria-hidden="true">→</span>
+              </Button>
+
+              <div className="contact-section__primary-links">
+                {primaryLinks.map(([label, href]) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={"Visit Varun Rajguru on " + label}
+                  >
+                    {label} <span aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="contact-section__profiles">
+              <span className="contact-section__label">ADDITIONAL PROFILES</span>
+              <div>
+                {profileLinks.map(([label, href]) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={"Visit Varun Rajguru on " + label}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </Motion.div>
         </div>
-
-        {/* Footer note */}
-        <p className="mt-12 text-xs text-gray-500">
-          Designed & built by Varun
-        </p>
-      </div>
+      </Container>
     </section>
   );
 }
