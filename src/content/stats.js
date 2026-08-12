@@ -1,6 +1,6 @@
 export const stats = {
-  questionsSolved: 1991,
-  dsaProblems: 1773,
+  questionsSolved: 2031,
+  dsaProblems: 1971,
   activeDays: 643,
   contestsAttended: 15,
   platforms: {
