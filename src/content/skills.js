@@ -45,11 +45,14 @@ export const skillGroups = [
     id: "ai-ml",
     number: "07",
     label: "AI / ML",
-    subgroups: [
-      {
-        label: "Additional Capability",
-        items: ["Machine Learning", "PyTorch", "YOLO / YOLOv8", "OpenCV"],
-      },
+    items: [
+      "AI Fundamentals",
+      "Machine Learning",
+      "Supervised & Unsupervised Learning",
+      "Regression",
+      "Classification",
+      "Clustering",
+      "Model Evaluation",
     ],
   },
 ];
