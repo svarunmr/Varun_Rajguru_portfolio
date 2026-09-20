@@ -1,13 +1,13 @@
 export const stats = {
   dsaProblems: 2113,
   activeDays: 675,
-  contestsAttended: 17,
+  contestsAttended: 18,
   platforms: {
     leetcode: {
-      rating: 2079,
+      rating: 1916,
     },
     codechef: {
-      rating: 1883,
+      rating: 1522,
     },
     codeforces: {
       rating: 1439,
