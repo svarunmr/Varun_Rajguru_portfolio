@@ -10,12 +10,15 @@ import {
 } from "./ui/icons";
 
 const NAV_ITEMS = [
-  { id: "projects", label: "WORK" },
-  { id: "skills", label: "LAB" },
+  { id: "home", label: "HOME" },
+  { id: "problem-solving", label: "PROBLEM SOLVING" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "skills", label: "STACK" },
   { id: "about", label: "ABOUT" },
+  { id: "contact", label: "CONTACT" },
 ];
 
-const OBSERVED_SECTIONS = ["home", ...NAV_ITEMS.map(({ id }) => id)];
+const OBSERVED_SECTIONS = NAV_ITEMS.map(({ id }) => id);
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -77,9 +80,7 @@ export default function Navbar() {
             <a
               key={id}
               href={`#${id}`}
-              aria-current={
-                active !== "home" && active === id ? "location" : undefined
-              }
+              aria-current={active === id ? "location" : undefined}
               className="site-nav__link"
             >
               {label}
@@ -96,6 +97,16 @@ export default function Navbar() {
             aria-label="Visit Varun Rajguru on GitHub"
           >
             <GithubIcon />
+          </a>
+
+          <a
+            className="site-nav__linkedin"
+            href="https://www.linkedin.com/in/svarunmr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Varun Rajguru on LinkedIn"
+          >
+            LINKEDIN
           </a>
 
           <IconButton
@@ -133,9 +144,7 @@ export default function Navbar() {
             <a
               key={id}
               href={`#${id}`}
-              aria-current={
-                active !== "home" && active === id ? "location" : undefined
-              }
+              aria-current={active === id ? "location" : undefined}
               onClick={closeMenu}
               className="site-nav__mobile-link"
             >
@@ -150,6 +159,16 @@ export default function Navbar() {
             className="site-nav__mobile-link"
           >
             GITHUB
+          </a>
+          <a
+            href="https://www.linkedin.com/in/svarunmr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="site-nav__mobile-link"
+            aria-label="Visit Varun Rajguru on LinkedIn"
+          >
+            LINKEDIN
           </a>
         </div>
       </div>

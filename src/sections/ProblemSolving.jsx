@@ -36,7 +36,7 @@ export default function ProblemSolving() {
             id="problem-solving-title"
             eyebrow="Evidence / 02"
             title="Problem Solving"
-            description="I practice data structures, algorithms, and optimization techniques across problem-solving platforms."
+            description="Consistent competitive programming practice focused on data structures, algorithms, and problem solving across multiple platforms."
           />
         </Motion.div>
 
@@ -48,13 +48,8 @@ export default function ProblemSolving() {
         >
           <dl className="problem-solving__primary">
             <StatNumber
-              value={stats.questionsSolved}
-              suffix="+"
-              label="QUESTIONS SOLVED"
-              valueClassName="stat-number__value--primary"
-            />
-            <StatNumber
               value={stats.dsaProblems}
+              suffix="+"
               label="DSA PROBLEMS"
               valueClassName="stat-number__value--primary"
             />
@@ -71,6 +66,23 @@ export default function ProblemSolving() {
               />
             ))}
           </dl>
+
+          <nav
+            className="problem-solving__platform-links"
+            aria-label="Competitive programming profiles"
+          >
+            {stats.profileLinks.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit Varun Rajguru on ${label}`}
+              >
+                {label} <span aria-hidden="true">→</span>
+              </a>
+            ))}
+          </nav>
 
           <div className="problem-solving__secondary">
             <dl className="problem-solving__contest-stat">

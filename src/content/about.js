@@ -1,18 +1,18 @@
 export const aboutContent = {
   paragraphs: [
-    "I am a software engineer focused on backend engineering, algorithms, and computer science foundations. I like turning difficult problems into clear, maintainable systems.",
-    "Alongside backend and database-driven applications, I build practical AI/ML and computer-vision projects. My approach is grounded in clean architecture, performance, and real-world impact.",
+    "I’m a software engineer focused on backend development, algorithms, and computer science fundamentals. I enjoy breaking down complex problems, understanding how systems work under the hood, and turning those ideas into reliable, maintainable software.",
+    "My current focus is building stronger backend and systems expertise—from API design and databases to concurrency, networking, and distributed-system fundamentals. I also explore AI/ML through practical projects, while keeping software engineering and problem solving at the core of my work.",
   ],
   focus: [
     "Backend Engineering",
     "Algorithms & Problem Solving",
-    "CS / Systems Foundations",
-    "Applied AI / ML",
+    "Systems & CS Foundations",
+    "Database & API Design",
   ],
   current: [
-    "Deepening backend engineering",
-    "Exploring scalable system design",
-    "Building algorithmic problem-solving depth",
-    "Turning ideas into working software",
+    "Deepening Node.js backend development",
+    "Strengthening database and API design",
+    "Learning system design & distributed systems",
+    "Building deeper C++ / algorithmic problem-solving skills",
   ],
 };

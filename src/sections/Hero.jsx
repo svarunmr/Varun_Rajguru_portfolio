@@ -20,29 +20,27 @@ export default function Hero() {
           animate={reveal.animate}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <p className="type-label hero__eyebrow">Software Engineer</p>
+          <p className="type-label hero__eyebrow">Varun Rajguru</p>
 
           <h1 id="hero-title" className="type-display hero__title">
-            <span>I BUILD</span>
-            <span>SYSTEMS</span>
-            <span>AND SOLVE</span>
-            <span>HARD PROBLEMS.</span>
+            <span>Software Engineer</span>
+            <span>| Backend &amp; Systems</span>
           </h1>
 
-          <p className="hero__specialties type-mono">
-            Backend <span aria-hidden="true">·</span> Algorithms{" "}
-            <span aria-hidden="true">·</span> AI
+          <p className="hero__description type-body-lg">
+            I build backend applications and software systems using C++,
+            Node.js, SQL, and JavaScript, backed by strong foundations in data
+            structures, algorithms, and computer science.
           </p>
 
-          <p className="hero__description type-body-lg">
-            I design and build scalable backend systems and ML-powered
-            applications with a focus on clean architecture, performance, and
-            real-world impact.
+          <p className="hero__achievement type-mono">
+            2,113+ DSA Problems <span aria-hidden="true">·</span> 2,079 LeetCode
+            Rating <span aria-hidden="true">·</span> 1,883 CodeChef Rating
           </p>
 
           <div className="hero__actions">
             <Button href="#projects" variant="primary">
-              VIEW WORK
+              View Projects
             </Button>
             <Button
               href="https://github.com/svarunmr"
@@ -50,14 +48,23 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              GITHUB
+              GitHub
+            </Button>
+            <Button
+              href="https://www.linkedin.com/in/svarunmr/"
+              variant="secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
             </Button>
           </div>
 
           <div className="hero__metadata" aria-label="Engineering focus areas">
-            <span>BACKEND</span>
-            <span>ALGORITHMS</span>
-            <span>AI</span>
+            <span>C++</span>
+            <span>NODE.JS</span>
+            <span>SQL</span>
+            <span>JAVASCRIPT</span>
           </div>
         </Motion.div>
 

@@ -1,17 +1,21 @@
 export const stats = {
-  questionsSolved: 2113,
-  dsaProblems: 2079,
+  dsaProblems: 2113,
   activeDays: 675,
   contestsAttended: 17,
   platforms: {
     leetcode: {
-      rating: 1883,
+      rating: 2079,
     },
     codechef: {
-      rating: 1439,
+      rating: 1883,
     },
     codeforces: {
-      rating: 793,
+      rating: 1439,
     },
   },
+  profileLinks: [
+    ["LeetCode", "https://leetcode.com/u/svarunmr/"],
+    ["CodeChef", "https://www.codechef.com/users/svarunmr"],
+    ["Codolio", "https://codolio.com/profile/varunmr"],
+  ],
 };

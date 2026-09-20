@@ -60,7 +60,7 @@ export default function Skills() {
             id="skills-title"
             eyebrow="Engineering Toolkit / 04"
             title="Technical Stack"
-            description="Technologies and foundations I use to design, build, and experiment."
+            description="Languages, backend technologies, systems, and computer science foundations I use to build software."
           />
         </Motion.div>
 
@@ -77,20 +77,6 @@ export default function Skills() {
             ))}
           </Motion.div>
 
-          {aiGroup && (
-            <Motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.5,
-                delay: shouldReduceMotion ? 0 : 0.14,
-              }}
-            >
-              <AiGroup group={aiGroup} />
-            </Motion.div>
-          )}
-
           <Motion.div
             className="technical-stack__foundation technical-stack__foundation--lower"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
@@ -102,6 +88,20 @@ export default function Skills() {
               <SkillGroup group={group} key={group.id} />
             ))}
           </Motion.div>
+
+          {aiGroup && (
+            <Motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : 0.26,
+              }}
+            >
+              <AiGroup group={aiGroup} />
+            </Motion.div>
+          )}
         </div>
       </Container>
     </section>
