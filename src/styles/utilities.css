@@ -17,28 +17,12 @@
 
 .site-footer__brand,
 .site-footer__descriptor,
-.site-footer__links,
 .site-footer__copyright,
 .site-footer__top {
   font-family: var(--font-mono);
   font-size: var(--text-label-size);
   letter-spacing: 0.08em;
   line-height: var(--leading-tight);
-}
-
-.site-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-}
-
-.site-footer__links a {
-  color: var(--color-text-secondary);
-  transition: color var(--duration-fast) var(--ease-standard);
-}
-
-.site-footer__links a:hover {
-  color: var(--color-accent);
 }
 
 .site-footer__brand {
@@ -68,7 +52,7 @@
   }
 
   .site-footer__inner {
-    grid-template-columns: 1fr auto auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr auto;
     align-items: center;
     gap: var(--space-6);
   }
@@ -329,20 +313,6 @@
   padding-inline: var(--space-6);
 }
 
-.contact-section__email-address {
-  justify-self: start;
-  color: var(--color-text-secondary);
-  font-family: var(--font-mono);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--leading-normal);
-  overflow-wrap: anywhere;
-  transition: color var(--duration-normal) var(--ease-standard);
-}
-
-.contact-section__email-address:hover {
-  color: var(--color-accent);
-}
-
 .contact-section__primary-links,
 .contact-section__profiles > div {
   display: flex;
@@ -475,28 +445,28 @@
   max-inline-size: 42rem;
 }
 
-.technical-stack__content {
-  display: grid;
-  gap: var(--space-8);
-  margin-top: var(--space-8);
+.technical-stack__groups {
+  margin-top: var(--space-10);
 }
 
-.technical-stack__foundation {
+.technical-stack__groups {
   display: grid;
+  gap: 0 var(--space-8);
   border-top: 1px solid var(--color-border);
 }
 
 .technical-stack__group {
   display: grid;
-  gap: var(--space-3);
-  padding-block: var(--space-4);
+  gap: var(--space-5);
+  min-inline-size: 0;
+  padding-block: var(--space-5);
   border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .technical-stack__group-header {
   display: flex;
   align-items: baseline;
-  gap: var(--space-3);
+  gap: var(--space-5);
 }
 
 .technical-stack__number {
@@ -510,10 +480,10 @@
 .technical-stack__group h3 {
   margin: 0;
   color: var(--color-text-primary);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-size: var(--text-label-size);
   font-weight: var(--weight-medium);
-  letter-spacing: -0.03em;
-  line-height: var(--leading-tight);
+  letter-spacing: 0.08em;
+  line-height: var(--leading-relaxed);
 }
 
 .technical-stack__items {
@@ -527,30 +497,27 @@
 }
 
 @media (min-width: 48rem) {
-  .technical-stack__content {
-    gap: var(--space-10);
-    margin-top: var(--space-10);
+  .technical-stack__groups {
+    margin-top: var(--space-12);
   }
 
-  .technical-stack__foundation {
+  .technical-stack__groups {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: var(--space-8);
   }
 
-  .technical-stack__foundation .technical-stack__group {
-    padding-inline: var(--space-4);
+  .technical-stack__groups .technical-stack__group {
+    padding-inline: var(--space-5);
     border-inline-start: 1px solid var(--color-border-subtle);
   }
 
-  .technical-stack__foundation .technical-stack__group:first-child {
+  .technical-stack__groups .technical-stack__group:nth-child(3n + 1) {
     padding-inline-start: 0;
     border-inline-start: 0;
   }
 
-  .technical-stack__foundation .technical-stack__group:last-child {
+  .technical-stack__groups .technical-stack__group:nth-child(3n) {
     padding-inline-end: 0;
   }
-
 }
 
 @media (max-width: 30rem) {
@@ -1031,8 +998,7 @@
 }
 
 .site-nav__link,
-.site-nav__github,
-.site-nav__linkedin {
+.site-nav__github {
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-label-size);
@@ -1049,8 +1015,7 @@
 
 .site-nav__link:hover,
 .site-nav__link[aria-current="location"],
-.site-nav__github:hover,
-.site-nav__linkedin:hover {
+.site-nav__github:hover {
   color: var(--color-text-primary);
 }
 
@@ -1068,19 +1033,6 @@
 }
 
 .site-nav__github:hover {
-  border-color: var(--color-accent);
-}
-
-.site-nav__linkedin {
-  display: inline-flex;
-  min-block-size: 2.75rem;
-  align-items: center;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  padding-inline: var(--space-3);
-}
-
-.site-nav__linkedin:hover {
   border-color: var(--color-accent);
 }
 
@@ -1160,7 +1112,7 @@
 }
 
 .hero__title {
-  max-inline-size: 18ch;
+  max-inline-size: 14ch;
   margin: 0;
   font-size: min(var(--text-display-size), 11vw);
   line-height: 0.92;
@@ -1171,11 +1123,9 @@
   display: block;
 }
 
-.hero__achievement {
-  max-inline-size: 42rem;
-  margin: var(--space-5) 0 0;
+.hero__specialties {
+  margin: var(--space-6) 0 0;
   color: var(--color-accent);
-  line-height: var(--leading-normal);
 }
 
 .hero__description {
@@ -1188,10 +1138,6 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-6);
-}
-
-.hero__actions .button {
-  text-transform: none;
 }
 
 .hero__metadata {
@@ -1360,29 +1306,10 @@
 
 .problem-solving__platforms {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6);
   margin: 0;
   padding-block: var(--space-6);
   border-bottom: 1px solid var(--color-border-subtle);
-}
-
-.problem-solving__platform-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-6);
-}
-
-.problem-solving__platform-links a {
-  color: var(--color-text-secondary);
-  font-family: var(--font-mono);
-  font-size: var(--text-label-size);
-  letter-spacing: 0.06em;
-  transition: color var(--duration-normal) var(--ease-standard);
-}
-
-.problem-solving__platform-links a:hover {
-  color: var(--color-accent);
 }
 
 .problem-solving__secondary {
@@ -1464,23 +1391,17 @@
   }
 
   .problem-solving__primary {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
     gap: var(--space-12);
   }
 
   .problem-solving__platforms {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-8);
   }
 
   .problem-solving__secondary {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     gap: var(--space-12);
-  }
-}
-
-@media (min-width: 64rem) {
-  .problem-solving__platforms {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
