@@ -10,7 +10,7 @@ export const stats = {
       rating: 1522,
     },
     codeforces: {
-      rating: 1439,
+      rating: 675,
     },
   },
   profileLinks: [
