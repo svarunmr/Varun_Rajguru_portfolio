@@ -34,11 +34,6 @@ export default function Hero() {
             <span aria-hidden="true">·</span> AI
           </p>
 
-          <p className="hero__description type-body-lg">
-            I design and build scalable backend systems and ML-powered
-            applications with a focus on clean architecture, performance, and
-            real-world impact.
-          </p>
 
           <div className="hero__actions">
             <Button href="#projects" variant="primary">

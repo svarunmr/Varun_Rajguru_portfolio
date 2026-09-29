@@ -1,17 +1,17 @@
 export const stats = {
-  questionsSolved: 2031,
-  dsaProblems: 1971,
-  activeDays: 643,
-  contestsAttended: 15,
+  questionsSolved: 2143,
+  dsaProblems: 2109,
+  activeDays: 681,
+  contestsAttended: 18,
   platforms: {
     leetcode: {
-      rating: 1883,
+      rating: 1916,
     },
     codechef: {
-      rating: 1385,
+      rating: 1522,
     },
     codeforces: {
-      rating: 793,
+      rating: 675,
     },
   },
 };
